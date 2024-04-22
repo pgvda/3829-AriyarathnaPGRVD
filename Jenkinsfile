@@ -6,7 +6,7 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 retry(3) {
-                    git branch: 'main', url: 'https://github.com/HGSChandeepa/test-node'
+                    git branch: 'main', url: 'https://github.com/pgvda/3829-AriyarathnaPGRVD/tree/main/Ariyarathna_PGRVD'
                 }
             }
         }
@@ -17,9 +17,9 @@ pipeline {
         }
         stage('Login to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'samin-docker', variable: 'samindocker')]) {
+                withCredentials([string(credentialsId: 'test-docker', variable: 'dockerpw')]) {
    
-               bat'docker login -u adomicarts -p ${samindocker}'
+               bat'docker login -u adomicarts -p ${dockerpw}'
                 }
             }
         }
